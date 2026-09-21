@@ -1,0 +1,4 @@
+User-agent: *
+Allow: /
+
+Sitemap: https://kuanchiwang.github.io/cornell-agriculture/sitemap.xml

@@ -1,0 +1,963 @@
+<!doctype html>
+<html lang="en">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <meta name="description" content="Research on Cornell-linked agricultural development programs in the Philippines and Southeast Asia, 1957–1972, with searchable archival content and interactive personnel networks.">
+  <meta name="keywords" content="Cornell University, agricultural development, Philippines, Southeast Asia, SEARCA, UPLB, forestry, agricultural education, international agriculture, archival research">
+  <meta name="author" content="Kuan-Chi Wang">
+  <meta name="robots" content="index, follow, max-image-preview:large">
+  <meta name="theme-color" content="#7a1f1f">
+  <title>Cornell International Agriculture Archive Website</title>
+  <link rel="canonical" href="https://kuanchiwang.github.io/cornell-agriculture/">
+  <meta property="og:type" content="website">
+  <meta property="og:title" content="Cornell International Agriculture Records">
+  <meta property="og:description" content="Searchable archival research and interactive personnel networks covering Cornell-linked agricultural development in the Philippines and Southeast Asia, 1957–1972.">
+  <meta property="og:url" content="https://kuanchiwang.github.io/cornell-agriculture/">
+  <meta property="og:image" content="https://kuanchiwang.github.io/cornell-agriculture/og.png">
+  <meta name="twitter:card" content="summary_large_image">
+  <meta name="twitter:title" content="Cornell International Agriculture Records">
+  <meta name="twitter:description" content="Searchable archival research and interactive personnel networks, 1957–1972.">
+  <meta name="twitter:image" content="https://kuanchiwang.github.io/cornell-agriculture/og.png">
+  <style>
+    :root {
+      --bg: #f7f7f4;
+      --paper: #ffffff;
+      --ink: #20242a;
+      --muted: #5f6875;
+      --line: #d9ded6;
+      --accent: #7a1f2b;
+      --accent-2: #285a66;
+      --table-head: #eef2ed;
+    }
+
+    * { box-sizing: border-box; }
+
+    body {
+      margin: 0;
+      background: var(--bg);
+      color: var(--ink);
+      font-family: Georgia, "Times New Roman", serif;
+      line-height: 1.58;
+    }
+
+    header {
+      background: #22313a;
+      color: white;
+      padding: 32px 24px 24px;
+      border-bottom: 5px solid var(--accent);
+    }
+
+    header .inner, main {
+      max-width: 1120px;
+      margin: 0 auto;
+    }
+
+    h1 {
+      margin: 0 0 10px;
+      font-size: clamp(2rem, 4vw, 3.25rem);
+      line-height: 1.08;
+      letter-spacing: 0;
+    }
+
+    header p {
+      margin: 0;
+      max-width: 780px;
+      color: #dce4e6;
+      font-size: 1.02rem;
+    }
+
+
+    main {
+      background: var(--paper);
+      padding: 28px 24px 48px;
+      box-shadow: 0 0 0 1px rgba(0,0,0,.04);
+    }
+
+    nav {
+      margin: 0 0 28px;
+      padding: 14px 18px;
+      background: #f1f3f0;
+      border: 1px solid var(--line);
+      border-radius: 6px;
+      font-family: system-ui, -apple-system, BlinkMacSystemFont, "Segoe UI", sans-serif;
+      font-size: .94rem;
+    }
+
+    nav a {
+      color: var(--accent-2);
+      margin-right: 18px;
+      white-space: nowrap;
+      text-decoration: none;
+    }
+
+    nav a:hover { text-decoration: underline; }
+
+    h2 {
+      margin: 34px 0 12px;
+      padding-bottom: 5px;
+      border-bottom: 2px solid var(--line);
+      color: #1e2c32;
+      font-size: 1.62rem;
+      line-height: 1.25;
+    }
+
+    h3 {
+      margin: 24px 0 10px;
+      color: var(--accent);
+      font-size: 1.22rem;
+    }
+
+    p { margin: 0 0 13px; }
+
+    a { color: var(--accent-2); }
+
+    .lead {
+      font-size: 1.08rem;
+      color: #30363d;
+    }
+
+    .note {
+      border-left: 4px solid var(--accent-2);
+      background: #f3f7f7;
+      padding: 10px 14px;
+      color: #354249;
+      margin: 16px 0;
+    }
+
+    .search-panel {
+      border: 1px solid var(--line);
+      border-radius: 8px;
+      background: #fbfbf8;
+      padding: 16px;
+      margin: 0 0 26px;
+      font-family: system-ui, -apple-system, BlinkMacSystemFont, "Segoe UI", sans-serif;
+    }
+
+    .search-panel label {
+      display: block;
+      font-weight: 700;
+      color: #2b3439;
+      margin-bottom: 8px;
+    }
+
+    .search-panel input {
+      width: 100%;
+      border: 1px solid var(--line);
+      border-radius: 6px;
+      padding: 10px 12px;
+      font: inherit;
+      background: white;
+    }
+
+    .search-results {
+      margin-top: 12px;
+      display: grid;
+      gap: 8px;
+    }
+
+    .search-result {
+      border: 1px solid var(--line);
+      border-radius: 6px;
+      background: white;
+      padding: 10px 12px;
+    }
+
+    .search-result a {
+      display: inline-block;
+      font-weight: 700;
+      text-decoration: none;
+    }
+
+    .search-result a:hover { text-decoration: underline; }
+
+    .search-result p {
+      margin: 4px 0 0;
+      color: var(--muted);
+      font-size: .9rem;
+      line-height: 1.4;
+    }
+
+    .keyword-chips {
+      display: flex;
+      flex-wrap: wrap;
+      gap: 8px;
+      margin-top: 10px;
+    }
+
+    .keyword-chip {
+      border: 1px solid var(--line);
+      border-radius: 999px;
+      background: white;
+      color: var(--accent-2);
+      padding: 5px 10px;
+      font: inherit;
+      font-size: .86rem;
+      cursor: pointer;
+    }
+
+    .keyword-chip:hover {
+      border-color: var(--accent-2);
+      background: #f3f7f7;
+    }
+
+    mark {
+      background: #fff1a8;
+      color: inherit;
+      padding: 0 .08em;
+    }
+
+    .table-wrap {
+      width: 100%;
+      overflow-x: auto;
+      margin: 14px 0 22px;
+      border: 1px solid var(--line);
+      border-radius: 6px;
+    }
+
+    .stats {
+      display: grid;
+      grid-template-columns: repeat(4, minmax(0, 1fr));
+      gap: 12px;
+      margin: 18px 0 24px;
+      font-family: system-ui, -apple-system, BlinkMacSystemFont, "Segoe UI", sans-serif;
+    }
+
+    .stat {
+      border: 1px solid var(--line);
+      border-radius: 6px;
+      padding: 14px;
+      background: #fbfbf8;
+    }
+
+    .stat strong {
+      display: block;
+      color: var(--accent);
+      font-size: 1.75rem;
+      line-height: 1;
+    }
+
+    .stat span {
+      display: block;
+      margin-top: 6px;
+      color: var(--muted);
+      font-size: .88rem;
+    }
+
+    table {
+      width: 100%;
+      border-collapse: collapse;
+      min-width: 640px;
+      font-size: .95rem;
+    }
+
+    th, td {
+      padding: 9px 11px;
+      border-bottom: 1px solid var(--line);
+      vertical-align: top;
+      text-align: left;
+    }
+
+    th {
+      background: var(--table-head);
+      font-weight: 700;
+      color: #2b3439;
+    }
+
+    tr:last-child td { border-bottom: 0; }
+
+    .num { text-align: right; }
+
+    figure {
+      margin: 16px 0 20px;
+      padding: 10px;
+      background: #11141b;
+      border-radius: 6px;
+      border: 1px solid #303646;
+    }
+
+    figure img {
+      display: block;
+      width: 100%;
+      height: auto;
+      border-radius: 4px;
+    }
+
+    figcaption {
+      color: #d5d9e1;
+      font-family: system-ui, -apple-system, BlinkMacSystemFont, "Segoe UI", sans-serif;
+      font-size: .88rem;
+      margin-top: 8px;
+    }
+
+    .network-frame {
+      width: 100%;
+      height: min(920px, 92vh);
+      border: 1px solid #252838;
+      border-radius: 8px;
+      background: #0f1117;
+      overflow: hidden;
+      margin: 16px 0 18px;
+      position: relative;
+      z-index: 1;
+    }
+
+    .network-panel {
+      margin: 22px 0 30px;
+    }
+
+    .network-panel h4 {
+      margin: 0 0 8px;
+      font-size: 1rem;
+      color: #f2f3f5;
+    }
+
+    .network-frame iframe {
+      width: 100%;
+      height: 100%;
+      border: 0;
+      display: block;
+    }
+
+    .network-actions {
+      display: flex;
+      gap: 10px;
+      flex-wrap: wrap;
+      margin: 0 0 34px;
+      font-family: system-ui, -apple-system, BlinkMacSystemFont, "Segoe UI", sans-serif;
+      font-size: .92rem;
+    }
+
+    .network-actions a, details summary {
+      color: var(--accent-2);
+      cursor: pointer;
+      font-weight: 650;
+    }
+
+    .network-summary {
+      margin-top: 28px;
+      padding-top: 8px;
+      border-top: 1px solid var(--line);
+    }
+
+    .fallback-grid {
+      display: grid;
+      grid-template-columns: repeat(3, minmax(0, 1fr));
+      gap: 12px;
+      margin: 12px 0 22px;
+    }
+
+    .fallback-grid figure {
+      margin: 0;
+    }
+
+    .filter-bar {
+      display: flex;
+      gap: 10px;
+      flex-wrap: wrap;
+      margin: 14px 0;
+      font-family: system-ui, -apple-system, BlinkMacSystemFont, "Segoe UI", sans-serif;
+    }
+
+    .filter-bar input {
+      min-width: min(100%, 320px);
+      flex: 1;
+      border: 1px solid var(--line);
+      border-radius: 6px;
+      padding: 9px 11px;
+      font: inherit;
+    }
+
+    .small {
+      color: var(--muted);
+      font-family: system-ui, -apple-system, BlinkMacSystemFont, "Segoe UI", sans-serif;
+      font-size: .9rem;
+    }
+
+    footer {
+      max-width: 1120px;
+      margin: 0 auto;
+      padding: 18px 24px 36px;
+      color: var(--muted);
+      font-size: .92rem;
+      font-family: system-ui, -apple-system, BlinkMacSystemFont, "Segoe UI", sans-serif;
+    }
+
+    @media (max-width: 720px) {
+      main { padding: 22px 16px 36px; }
+      header { padding: 28px 16px 20px; }
+      nav a { display: inline-block; margin-bottom: 6px; }
+      table { min-width: 560px; }
+      .stats { grid-template-columns: repeat(2, minmax(0, 1fr)); }
+      .network-frame { height: 860px; }
+      .fallback-grid { grid-template-columns: 1fr; }
+    }
+  </style>
+</head>
+<body>
+  <header>
+    <div class="inner">
+      <h1>Cornell International Agriculture Archive</h1>
+      <p>A research website for Cornell-linked agricultural development programs in the Philippines and Southeast Asia, c. 1957-1972, with embedded dynamic affiliation networks.</p>
+    </div>
+  </header>
+
+  <main>
+    <nav aria-label="Contents">
+      <a href="#site-search">Search</a>
+      <a href="#summary">Summary</a>
+      <a href="#programs">Programs</a>
+      <a href="#networks">Networks</a>
+      <a href="#register">Register</a>
+      <a href="#participants">Participants</a>
+      <a href="#themes">Themes</a>
+      <a href="#institutions">Institutions</a>
+      <a href="#files">Files</a>
+    </nav>
+
+    <section id="site-search" class="search-panel">
+      <label for="siteSearch">Document keyword search</label>
+      <input id="siteSearch" type="search">
+      <div class="keyword-chips" aria-label="Suggested keywords">
+        <button class="keyword-chip" type="button" data-keyword="P1">P1</button>
+        <button class="keyword-chip" type="button" data-keyword="P2">P2</button>
+        <button class="keyword-chip" type="button" data-keyword="P3">P3</button>
+        <button class="keyword-chip" type="button" data-keyword="SEARCA">SEARCA</button>
+        <button class="keyword-chip" type="button" data-keyword="Agronomy">Agronomy</button>
+        <button class="keyword-chip" type="button" data-keyword="Ford Foundation">Ford Foundation</button>
+        <button class="keyword-chip" type="button" data-keyword="World Bank">World Bank</button>
+        <button class="keyword-chip" type="button" data-keyword="Rockefeller Foundation">Rockefeller Foundation</button>
+        <button class="keyword-chip" type="button" data-keyword="USA">USA</button>
+        <button class="keyword-chip" type="button" data-keyword="Philippines">Philippines</button>
+        <button class="keyword-chip" type="button" data-keyword="Taiwan">Taiwan</button>
+        <button class="keyword-chip" type="button" data-keyword="Thailand">Thailand</button>
+        <button class="keyword-chip" type="button" data-keyword="Indonesia">Indonesia</button>
+      </div>
+      <div id="siteSearchResults" class="search-results" aria-live="polite"></div>
+    </section>
+
+    <section id="summary">
+      <h2>Summary</h2>
+      <p class="lead">Box 12 / Volume 24 of the Cornell University International Agriculture Records documents three linked agricultural development programs in the Philippines and Southeast Asia between 1957 and 1972. The records cover final reports, annual reviews, consultant trip reports, graduate student papers, planning documents, budgets, appendices, and correspondence.</p>
+      <p>The programs centered on Cornell University's role in building agricultural education, research capacity, graduate training, and regional cooperation around the University of the Philippines at Los Banos. Across the archive, 82 named participants appear from 5 states and 26 academic disciplines.</p>
+
+      <div class="stats" aria-label="Archive summary statistics">
+        <div class="stat"><strong>3</strong><span>linked programs</span></div>
+        <div class="stat"><strong>82</strong><span>named participants</span></div>
+        <div class="stat"><strong>26</strong><span>academic disciplines</span></div>
+        <div class="stat"><strong>5</strong><span>states represented</span></div>
+      </div>
+
+      <div class="table-wrap">
+        <table>
+          <tr><th>Field</th><th>Detail</th></tr>
+          <tr><td>Collection</td><td>Cornell University International Agriculture Records</td></tr>
+          <tr><td>Archive unit</td><td>Box 12, Volume 24</td></tr>
+          <tr><td>Call number</td><td>21-2-1700</td></tr>
+          <tr><td>Date range</td><td>c. 1957-1972</td></tr>
+          <tr><td>Holding institution</td><td>Cornell University Library Annex</td></tr>
+          <tr><td>Physical item</td><td>3,254-page digitised PDF</td></tr>
+          <tr><td>Main location</td><td>Los Banos, Laguna, Philippines</td></tr>
+          <tr><td>Named participants</td><td>82</td></tr>
+          <tr><td>States represented</td><td>5</td></tr>
+          <tr><td>Disciplines represented</td><td>26</td></tr>
+        </table>
+      </div>
+    </section>
+
+    <section id="programs">
+      <h2>Programs</h2>
+      <div class="table-wrap">
+        <table>
+          <tr><th>Code</th><th>Program</th><th>Dates</th><th>Contractor</th><th>Funder</th><th>Partner</th></tr>
+          <tr><td>P1</td><td>Forestry Assistance Program</td><td>1957-1966</td><td>Cornell University, then SUNY College of Forestry at Syracuse</td><td>USAID / ICA</td><td>University of the Philippines College of Forestry</td></tr>
+          <tr><td>P2</td><td>UP-Cornell Graduate Education Program / UPCO</td><td>1963-1972</td><td>Cornell University</td><td>Ford Foundation, with additional USAID, Rockefeller Foundation, and World Bank support</td><td>University of the Philippines College of Agriculture</td></tr>
+          <tr><td>P3</td><td>SEARCA Regional Program</td><td>1967-1972</td><td>Cornell University</td><td>Ford Foundation</td><td>UPLB / SEARCA</td></tr>
+        </table>
+      </div>
+
+      <h3>Project 1: Forestry Assistance Program</h3>
+      <p>The Forestry Assistance Program began in 1957, the same year the University of the Philippines College of Forestry was formally separated from the Philippine Bureau of Forestry. The program addressed postwar rebuilding, faculty training, curriculum development, research capacity, facilities, and administration.</p>
+      <p>By June 1966, the College had 49 faculty members. Thirty-two had been sent abroad for further education or training, and 22 current faculty members had earned advanced degrees.</p>
+      <div class="table-wrap">
+        <table>
+          <tr><th>Name</th><th>Role</th><th>Discipline</th><th>State</th><th>Period</th></tr>
+          <tr><td>Hardy L. Shirley</td><td>SUNY Forestry Staff</td><td>Forestry</td><td>USA</td><td>P1, 1957-1966</td></tr>
+          <tr><td>James E. Davis</td><td>SUNY Forestry Staff</td><td>Forestry</td><td>USA</td><td>P1, 1957-1966</td></tr>
+          <tr><td>William L. Webb</td><td>SUNY Forestry Staff</td><td>Forestry</td><td>USA</td><td>P1, 1957-1966</td></tr>
+          <tr><td>C.E. Farnsworth</td><td>SUNY Forestry Staff</td><td>Silviculture</td><td>USA</td><td>P1, 1957-1966</td></tr>
+          <tr><td>Halsey B. Knapp</td><td>SUNY Forestry Staff</td><td>Forestry</td><td>USA</td><td>P1, 1957-1966</td></tr>
+          <tr><td>Carl H. de Zeeuw</td><td>SUNY Forestry Staff</td><td>Wood Technology</td><td>USA</td><td>P1, 1957-1966</td></tr>
+          <tr><td>Charles C. Larson</td><td>SUNY Forestry Staff</td><td>Forest Economics</td><td>USA</td><td>P1, 1957-1966</td></tr>
+          <tr><td>Savel B. Silverborg</td><td>SUNY Forestry Staff</td><td>Forest Pathology</td><td>USA</td><td>P1, 1957-1966</td></tr>
+        </table>
+      </div>
+
+      <h3>Project 2: UP-Cornell Graduate Education Program / UPCO</h3>
+      <p>UPCO was the largest and most sustained program in the archive. It aimed to transform the University of the Philippines College of Agriculture from a teaching college into a research-intensive graduate institution with regional reach.</p>
+      <p>UPCO supported graduate fellowships, visiting professors, short-term consultants, research programs, curriculum modernization, laboratory construction, library development, computing infrastructure, and the Association of Colleges of Agriculture in the Philippines.</p>
+      <div class="table-wrap">
+        <table>
+          <tr><th>Name</th><th>Role</th><th>Discipline</th><th>State</th><th>Period</th></tr>
+          <tr><td>Nyle C. Brady</td><td>Project Leader</td><td>Agronomy</td><td>USA</td><td>Sep 1963-Nov 1963</td></tr>
+          <tr><td>Richard Bradfield</td><td>Project Leader</td><td>Agronomy</td><td>USA</td><td>Jan 1964-Jul 1964</td></tr>
+          <tr><td>Herbert L. Everett</td><td>Project Leader</td><td>Agronomy</td><td>USA</td><td>Jul 1964-Jan 1966</td></tr>
+          <tr><td>George W. Trimberger</td><td>Project Leader</td><td>Animal Husbandry</td><td>USA</td><td>Jan 1966-Nov 1967</td></tr>
+          <tr><td>Joseph F. Metz Jr.</td><td>Project Leader</td><td>Agronomy</td><td>USA</td><td>Sep 1967-Jul 1969</td></tr>
+          <tr><td>Kenneth L. Turk</td><td>Project Leader</td><td>Administration</td><td>USA</td><td>Acting / overlap</td></tr>
+          <tr><td>Morrill T. Vittum</td><td>Project Leader</td><td>Vegetable Crops</td><td>USA</td><td>Jun 1969-Jun 1972</td></tr>
+        </table>
+      </div>
+
+      <h3>Project 3: SEARCA Regional Program</h3>
+      <p>SEARCA, the Southeast Asian Regional Center for Graduate Study and Research in Agriculture, emerged from the regional ambitions of UPCO. P3 overlapped with the later years of P2 and formalized Los Banos as a regional agricultural education and research hub.</p>
+      <p>The P3 affiliation group includes 13 people: Cornell visiting professors who bridged from P2, Philippine administrators, Asian visiting professors, Asian participants, and Asian graduate students.</p>
+      <div class="table-wrap">
+        <table>
+          <tr><th>Affiliation status</th><th class="num">Persons</th><th>Interpretation</th></tr>
+          <tr><td>P1</td><td class="num">8</td><td>People identified only with the forestry assistance program.</td></tr>
+          <tr><td>P2</td><td class="num">56</td><td>People identified only with the UP-Cornell graduate education program.</td></tr>
+          <tr><td>P3</td><td class="num">0</td><td>No people appear in P3 without also appearing in P2.</td></tr>
+          <tr><td>P2 and P3</td><td class="num">13</td><td>All P3-affiliated people in the register also appear as P2 participants.</td></tr>
+        </table>
+      </div>
+      <div class="table-wrap">
+        <table>
+          <tr><th>Name</th><th>Role</th><th>Discipline</th><th>State</th><th>Period</th></tr>
+          <tr><td>Malcolm C. Bourne</td><td>Visiting Professor</td><td>Food Science &amp; Technology</td><td>USA</td><td>P2-P3 overlap</td></tr>
+          <tr><td>Otto E. Schultz</td><td>Visiting Professor</td><td>Plant Pathology</td><td>USA</td><td>P2-P3 overlap</td></tr>
+          <tr><td>John N. Hathcock</td><td>Visiting Professor</td><td>Agricultural Chemistry</td><td>USA</td><td>P2-P3 overlap</td></tr>
+          <tr><td>Lawrence B. Darrah</td><td>Visiting Professor</td><td>Agricultural Economics</td><td>USA</td><td>P2-P3 overlap</td></tr>
+          <tr><td>D.L. Umali</td><td>Philippine Administrator</td><td>Administration</td><td>Philippines</td><td>P2-P3 overlap</td></tr>
+          <tr><td>F.A. Bernardo</td><td>Philippine Administrator</td><td>Administration</td><td>Philippines</td><td>P2-P3 overlap</td></tr>
+          <tr><td>S.C. Hsieh</td><td>Asian Visiting Professor</td><td>Agricultural Economics</td><td>Taiwan</td><td>P2-P3 overlap</td></tr>
+          <tr><td>C.W. Chang</td><td>Asian Visiting Professor</td><td>Agricultural Education</td><td>Taiwan</td><td>P2-P3 overlap</td></tr>
+          <tr><td>C. Chandrapauraya</td><td>Asian Participant</td><td>Food Science &amp; Technology</td><td>Thailand</td><td>P2-P3 overlap</td></tr>
+          <tr><td>Rusli Hakim</td><td>Asian Graduate Student</td><td>Plant Breeding</td><td>Indonesia</td><td>P2-P3 overlap</td></tr>
+          <tr><td>Y.Y. Lu</td><td>Asian Graduate Student</td><td>Agricultural Economics</td><td>Taiwan</td><td>P2-P3 overlap</td></tr>
+          <tr><td>S.H. Liao</td><td>Asian Graduate Student</td><td>Agricultural Economics</td><td>Taiwan</td><td>P2-P3 overlap</td></tr>
+          <tr><td>M. Pajanaiphabulaya</td><td>Asian Graduate Student</td><td>Home Economics</td><td>Thailand</td><td>P2-P3 overlap</td></tr>
+        </table>
+      </div>
+    </section>
+
+    <section id="networks">
+      <h2>Affiliation Networks</h2>
+      <p>Three bipartite affiliation networks were constructed from the personnel register. Each links people to one type of hub: project, discipline, or state. The live panels below are interactive: search for names, click nodes to highlight connections, and zoom or pan each graph.</p>
+
+      <h3>Live Interactive Networks</h3>
+      <div class="network-panel">
+        <h4>Network by Project</h4>
+        <div class="network-frame" aria-label="Interactive project affiliation network">
+          <iframe src="Cornell_Affiliation_Networks.html?net=project" title="Interactive Cornell project affiliation network"></iframe>
+        </div>
+      </div>
+      <div class="network-panel">
+        <h4>Network by Discipline</h4>
+        <div class="network-frame" aria-label="Interactive discipline affiliation network">
+          <iframe src="Cornell_Affiliation_Networks.html?net=field" title="Interactive Cornell discipline affiliation network"></iframe>
+        </div>
+      </div>
+      <div class="network-panel">
+        <h4>Network by State</h4>
+        <div class="network-frame" aria-label="Interactive state affiliation network">
+          <iframe src="Cornell_Affiliation_Networks.html?net=country" title="Interactive Cornell state affiliation network"></iframe>
+        </div>
+      </div>
+
+      <div class="network-actions">
+        <a href="Cornell_Affiliation_Networks.html">Open the dynamic network in a full page</a>
+      </div>
+
+      <details class="network-summary">
+        <summary>Network summary tables</summary>
+
+        <h3>Network by Project</h3>
+        <div class="table-wrap">
+          <table>
+            <tr><th>Project membership</th><th class="num">Persons</th><th class="num">Share</th></tr>
+            <tr><td>P1 only</td><td class="num">8</td><td class="num">10%</td></tr>
+            <tr><td>P2 only</td><td class="num">56</td><td class="num">68%</td></tr>
+            <tr><td>P3 only</td><td class="num">0</td><td class="num">0%</td></tr>
+            <tr><td>P2 and P3</td><td class="num">13</td><td class="num">16%</td></tr>
+            <tr><td>Total unique persons</td><td class="num">82</td><td class="num">100%</td></tr>
+          </table>
+        </div>
+
+        <h3>Network by Discipline</h3>
+        <div class="table-wrap">
+          <table>
+            <tr><th>Discipline</th><th class="num">Persons</th></tr>
+            <tr><td>Agronomy</td><td class="num">11</td></tr>
+            <tr><td>Agricultural Economics</td><td class="num">7</td></tr>
+            <tr><td>Administration</td><td class="num">7</td></tr>
+            <tr><td>Plant Breeding</td><td class="num">6</td></tr>
+            <tr><td>Food Science &amp; Technology</td><td class="num">5</td></tr>
+            <tr><td>Agricultural Chemistry</td><td class="num">5</td></tr>
+            <tr><td>Vegetable Crops</td><td class="num">5</td></tr>
+            <tr><td>Entomology</td><td class="num">4</td></tr>
+            <tr><td>Animal Husbandry</td><td class="num">4</td></tr>
+            <tr><td>Rural Sociology</td><td class="num">4</td></tr>
+            <tr><td>Forestry</td><td class="num">4</td></tr>
+          </table>
+        </div>
+
+        <h3>Network by State</h3>
+        <div class="table-wrap">
+          <table>
+            <tr><th>State</th><th class="num">P1</th><th class="num">P2</th><th class="num">P3</th><th class="num">Unique persons</th></tr>
+            <tr><td>USA</td><td class="num">8</td><td class="num">52</td><td class="num">4</td><td class="num">53</td></tr>
+            <tr><td>Philippines</td><td class="num">0</td><td class="num">15</td><td class="num">2</td><td class="num">15</td></tr>
+            <tr><td>Taiwan / ROC</td><td class="num">0</td><td class="num">4</td><td class="num">4</td><td class="num">4</td></tr>
+            <tr><td>Thailand</td><td class="num">0</td><td class="num">2</td><td class="num">2</td><td class="num">2</td></tr>
+            <tr><td>Indonesia</td><td class="num">0</td><td class="num">1</td><td class="num">1</td><td class="num">1</td></tr>
+            <tr><td>Total</td><td class="num">8</td><td class="num">74</td><td class="num">13</td><td class="num">82</td></tr>
+          </table>
+        </div>
+        <p class="note">Column totals exceed 82 because 13 persons appear in both P2 and P3.</p>
+      </details>
+
+      <details>
+        <summary>Backup network snapshots</summary>
+        <div class="fallback-grid">
+          <figure>
+            <img src="figures/cornell_network_project.png" alt="Affiliation network by project">
+            <figcaption>Project network snapshot.</figcaption>
+          </figure>
+          <figure>
+            <img src="figures/cornell_network_discipline.png" alt="Affiliation network by discipline">
+            <figcaption>Discipline network snapshot.</figcaption>
+          </figure>
+          <figure>
+            <img src="figures/cornell_network_country.png" alt="Affiliation network by state">
+            <figcaption>State network snapshot.</figcaption>
+          </figure>
+        </div>
+      </details>
+    </section>
+
+    <section id="register">
+      <h2>Full Personnel Register</h2>
+      <p>The register lists the named people identified in the archive, with role, discipline, state, and project affiliation. Use the search box to filter by name, role, discipline, state, or project.</p>
+      <div class="filter-bar">
+        <input id="personSearch" type="search" aria-label="Search personnel register">
+      </div>
+      <p class="small" id="personCount">Showing all personnel.</p>
+      <div class="table-wrap">
+        <table>
+          <thead>
+            <tr><th>Name</th><th>Role</th><th>Discipline</th><th>State</th><th>Project(s)</th></tr>
+          </thead>
+          <tbody id="personTable"></tbody>
+        </table>
+      </div>
+      <p class="note">The archive summary reports 82 named participants. The current extracted register renders 83 rows, so this site preserves the full extracted register while keeping the reported archival total visible in the summary statistics.</p>
+    </section>
+
+    <section id="participants">
+      <h2>Cross-Project Participants</h2>
+      <p>The following people appear in both P2 and P3:</p>
+      <div class="table-wrap">
+        <table>
+          <tr><th>Name</th><th>Discipline</th><th>State</th></tr>
+          <tr><td>Malcolm C. Bourne</td><td>Food Science &amp; Technology</td><td>USA</td></tr>
+          <tr><td>Otto E. Schultz</td><td>Plant Pathology</td><td>USA</td></tr>
+          <tr><td>John N. Hathcock</td><td>Agricultural Chemistry</td><td>USA</td></tr>
+          <tr><td>Lawrence B. Darrah</td><td>Agricultural Economics</td><td>USA</td></tr>
+          <tr><td>D.L. Umali</td><td>Administration</td><td>Philippines</td></tr>
+          <tr><td>F.A. Bernardo</td><td>Administration</td><td>Philippines</td></tr>
+          <tr><td>S.C. Hsieh</td><td>Agricultural Economics</td><td>Taiwan</td></tr>
+          <tr><td>C.W. Chang</td><td>Agricultural Education</td><td>Taiwan</td></tr>
+          <tr><td>C. Chandrapauraya</td><td>Food Science &amp; Technology</td><td>Thailand</td></tr>
+          <tr><td>Rusli Hakim</td><td>Plant Breeding</td><td>Indonesia</td></tr>
+          <tr><td>Y.Y. Lu</td><td>Agricultural Economics</td><td>Taiwan</td></tr>
+          <tr><td>S.H. Liao</td><td>Agricultural Economics</td><td>Taiwan</td></tr>
+          <tr><td>M. Pajanaiphabulaya</td><td>Home Economics</td><td>Thailand</td></tr>
+        </table>
+      </div>
+    </section>
+
+    <section id="themes">
+      <h2>Thematic Topics</h2>
+      <div class="table-wrap">
+        <table>
+          <tr><th>Theme</th><th>Archive content</th></tr>
+          <tr><td>Graduate education and training</td><td>Fellowships, degrees, thesis supervision, graduate assistantships, completion records.</td></tr>
+          <tr><td>Curriculum development</td><td>Syllabi, course modernization, laboratory teaching, adaptation of US agricultural science curricula to Philippine tropical conditions.</td></tr>
+          <tr><td>Faculty development</td><td>Overseas training, recruitment, salaries, promotion, and retention of trained staff.</td></tr>
+          <tr><td>Physical facilities</td><td>Buildings, laboratories, equipment procurement, faculty housing, World Bank reporting.</td></tr>
+          <tr><td>Research programs</td><td>Crop science, animal science, food technology, soil science, agricultural economics, rural sociology, and related fields.</td></tr>
+          <tr><td>Extension and outreach</td><td>Farmer contact, vocational agriculture education, extension worker training, ACAP networks.</td></tr>
+          <tr><td>Institutional administration</td><td>Program management, budgets, counterpart funds, Ford Foundation reporting, inter-institutional coordination.</td></tr>
+          <tr><td>Regional cooperation</td><td>Asian participation, SEARCA formation, regional conferences, IRRI links, JCRR participation.</td></tr>
+        </table>
+      </div>
+    </section>
+
+    <section id="institutions">
+      <h2>Key Institutions</h2>
+      <div class="table-wrap">
+        <table>
+          <tr><th>Institution</th><th>State / scope</th><th>Role</th></tr>
+          <tr><td>Cornell University, New York State College of Agriculture</td><td>USA</td><td>Primary contractor for P2; initial contractor for P1.</td></tr>
+          <tr><td>SUNY College of Forestry at Syracuse</td><td>USA</td><td>Contractor for P1 from 1960 to 1966.</td></tr>
+          <tr><td>University of the Philippines College of Agriculture</td><td>Philippines</td><td>Main partner for P2 and P3.</td></tr>
+          <tr><td>University of the Philippines College of Forestry</td><td>Philippines</td><td>Main partner for P1.</td></tr>
+          <tr><td>Ford Foundation</td><td>International</td><td>Primary funder for P2 and P3.</td></tr>
+          <tr><td>USAID / AID / ICA</td><td>USA</td><td>Primary funder for P1 and co-funder for P2.</td></tr>
+          <tr><td>World Bank</td><td>International</td><td>Infrastructure funding for UPLB buildings.</td></tr>
+          <tr><td>Rockefeller Foundation</td><td>International</td><td>Fellowship and co-funding support for P2.</td></tr>
+          <tr><td>Sino-American Joint Commission on Rural Reconstruction</td><td>Taiwan / USA</td><td>Supported Asian participant routes into P2 and P3.</td></tr>
+          <tr><td>SEARCA</td><td>Southeast Asia</td><td>Regional center institutionalized through P3.</td></tr>
+          <tr><td>ACAP</td><td>Philippines</td><td>National network of agriculture colleges supported by UPCO.</td></tr>
+          <tr><td>IRRI</td><td>Philippines / international</td><td>Co-located Los Banos research institution and informal collaborator.</td></tr>
+        </table>
+      </div>
+    </section>
+
+    <section id="files">
+      <h2>Files</h2>
+      <div class="table-wrap">
+        <table>
+          <tr><th>File</th><th>Description</th></tr>
+          <tr><td><a href="Cornell_International_Agriculture_Wiki.md">Cornell_International_Agriculture_Wiki.md</a></td><td>Markdown version of the wiki page.</td></tr>
+          <tr><td><a href="Cornell_International_Agriculture_Wiki.html">Cornell_International_Agriculture_Wiki.html</a></td><td>Earlier single-page HTML wiki.</td></tr>
+          <tr><td><a href="Cornell (1).txt">Cornell (1).txt</a></td><td>Full OCR text used as the base for document keyword search.</td></tr>
+          <tr><td><a href="Cornell_Archive_Research_Summary.md">Cornell_Archive_Research_Summary.md</a></td><td>Full research summary with detailed tables and Mermaid diagrams.</td></tr>
+          <tr><td><a href="Cornell_Affiliation_Networks.html">Cornell_Affiliation_Networks.html</a></td><td>Interactive D3 network visualization.</td></tr>
+          <tr><td><a href="figures/cornell_network_project.png">figures/cornell_network_project.png</a></td><td>Project network snapshot.</td></tr>
+          <tr><td><a href="figures/cornell_network_discipline.png">figures/cornell_network_discipline.png</a></td><td>Discipline network snapshot.</td></tr>
+          <tr><td><a href="figures/cornell_network_country.png">figures/cornell_network_country.png</a></td><td>State network snapshot.</td></tr>
+        </table>
+      </div>
+    </section>
+
+    <section>
+      <h2>Notes</h2>
+      <p>The archive documents three contractually or institutionally distinct programs, although P2 and P3 overlap operationally. P3 is treated as a separate affiliation category because it had a distinct regional mandate and a partially distinct participant profile.</p>
+    </section>
+  </main>
+
+  <footer>
+    Source: Cornell University International Agriculture Records, Box 12, Vol. 24, Call No. 21-2-1700. Research conducted by Kuan-Chi Wang, May 2026.
+  </footer>
+
+  <script src="document-search-data.js"></script>
+  <script>
+    const siteSearch = document.getElementById("siteSearch");
+    const siteSearchResults = document.getElementById("siteSearchResults");
+    const keywordChips = document.querySelectorAll(".keyword-chip");
+
+    function escapeHtml(value) {
+      return value.replace(/[&<>"']/g, (char) => ({
+        "&": "&amp;",
+        "<": "&lt;",
+        ">": "&gt;",
+        '"': "&quot;",
+        "'": "&#039;",
+      }[char]));
+    }
+
+    function resultSnippet(text, terms) {
+      const lower = text.toLowerCase();
+      const firstIndex = terms
+        .filter(Boolean)
+        .map((term) => lower.indexOf(term.toLowerCase()))
+        .filter((index) => index >= 0)
+        .sort((a, b) => a - b)[0] ?? 0;
+      const start = Math.max(0, firstIndex - 110);
+      const end = Math.min(text.length, firstIndex + 260);
+      return `${start > 0 ? "..." : ""}${text.slice(start, end)}${end < text.length ? "..." : ""}`;
+    }
+
+    function highlightTerms(text, terms) {
+      let html = escapeHtml(resultSnippet(text, terms));
+      terms
+        .filter((term) => term.length > 0)
+        .sort((a, b) => b.length - a.length)
+        .forEach((term) => {
+          const escaped = term.replace(/[.*+?^${}()|[\]\\]/g, "\\$&");
+          html = html.replace(new RegExp(`(${escaped})`, "ig"), "<mark>$1</mark>");
+        });
+      return html;
+    }
+
+    function nearestSectionTitle(element) {
+      const section = element.closest("section");
+      return section?.querySelector("h2")?.textContent.trim() || "Result";
+    }
+
+    function buildSearchIndex() {
+      const entries = [];
+      document.querySelectorAll("main section:not(#site-search)").forEach((section) => {
+        const sectionId = section.id;
+        section.querySelectorAll("h2, h3, p, tr, li").forEach((element) => {
+          const text = element.textContent.replace(/\s+/g, " ").trim();
+          if (!text || text.length < 3) return;
+          entries.push({
+            title: nearestSectionTitle(element),
+            text,
+            href: sectionId ? `#${sectionId}` : "#",
+          });
+        });
+      });
+      const documentIndex = Array.isArray(window.DOCUMENT_SEARCH_INDEX) ? window.DOCUMENT_SEARCH_INDEX : [];
+      if (Array.isArray(documentIndex)) {
+        entries.push(...documentIndex);
+      }
+      return entries;
+    }
+
+    const siteSearchIndex = buildSearchIndex();
+
+    function renderSiteSearch(query = "") {
+      const normalized = query.trim().toLowerCase();
+      if (!normalized) {
+        siteSearchResults.innerHTML = '';
+        return;
+      }
+
+      const terms = normalized.split(/\s+/).filter(Boolean);
+      const phrase = normalized;
+      const ranked = siteSearchIndex
+        .map((entry) => {
+          const haystack = entry.text.toLowerCase();
+          const phraseMatch = haystack.includes(phrase);
+          const termHits = terms.filter((term) => haystack.includes(term)).length;
+          const score = (phraseMatch ? 10 : 0) + termHits;
+          return { ...entry, score, phraseMatch, termHits };
+        })
+        .filter((entry) => entry.score > 0)
+        .sort((a, b) => b.score - a.score || a.text.length - b.text.length);
+      const matches = ranked.slice(0, 25);
+
+      if (!matches.length) {
+        siteSearchResults.innerHTML = '<p class="small">No matching content found.</p>';
+        return;
+      }
+
+      siteSearchResults.innerHTML = `<p class="small">${ranked.length} result${ranked.length === 1 ? "" : "s"} for "${escapeHtml(query.trim())}". Showing first ${matches.length}.</p>` + matches.map((entry) => `
+        <div class="search-result">
+          <a href="${entry.href}">${entry.title}</a>
+          <p>${highlightTerms(entry.text, entry.phraseMatch ? [query.trim()] : terms)}</p>
+        </div>
+      `).join("");
+    }
+
+    siteSearch.addEventListener("input", (event) => renderSiteSearch(event.target.value));
+    keywordChips.forEach((button) => {
+      button.addEventListener("click", () => {
+        siteSearch.value = button.dataset.keyword;
+        renderSiteSearch(siteSearch.value);
+        siteSearch.focus();
+      });
+    });
+    renderSiteSearch();
+
+    const people = [
+      ["Nyle C. Brady","Project Leader","Agronomy","USA","P2"],
+      ["Kenneth L. Turk","Project Leader","Administration","USA","P2"],
+      ["Richard Bradfield","Project Leader","Agronomy","USA","P2"],
+      ["Herbert L. Everett","Project Leader","Agronomy","USA","P2"],
+      ["George W. Trimberger","Project Leader","Animal Husbandry","USA","P2"],
+      ["Joseph F. Metz Jr.","Project Leader","Agronomy","USA","P2"],
+      ["Morrill T. Vittum","Project Leader","Vegetable Crops","USA","P2"],
+      ["Maurice C. Bond","Visiting Professor","Extension","USA","P2"],
+      ["Gilbert Levine","Visiting Professor","Agricultural Engineering","USA","P2"],
+      ["Arthur E. Durfee","Visiting Professor","Extension","USA","P2"],
+      ["Robert B. Musgrave","Visiting Professor","Agronomy","USA","P2"],
+      ["Barbour L. Herrington","Visiting Professor","Agricultural Chemistry","USA","P2"],
+      ["James E. Knott","Visiting Professor","Agronomy","USA","P2"],
+      ["Carl S. Pederson","Visiting Professor","Food Science & Technology","USA","P2"],
+      ["Randolph X. Barker","Visiting Professor","Agricultural Economics","USA","P2"],
+      ["Harry R. Ainslie","Visiting Professor","Extension","USA","P2"],
+      ["Robert M. Smock","Visiting Professor","Pomology","USA","P2"],
+      ["Lowell D. Uhler","Visiting Professor","Entomology","USA","P2"],
+      ["Edward H. Glass","Visiting Professor","Entomology","USA","P2"],
+      ["James C. Sentz","Visiting Professor","Plant Breeding","USA","P2"],
+      ["Donald H. Wallace","Visiting Professor","Vegetable Crops","USA","P2"],
+      ["Frederick K.T. Tom","Visiting Professor","Agricultural Education","USA","P2"],
+      ["Keith H. Steinkraus","Visiting Professor","Food Science & Technology","USA","P2"],
+      ["James C. Miller","Visiting Professor","Animal Husbandry","USA","P2"],
+      ["D. Ralph Strength","Visiting Professor","Agricultural Chemistry","USA","P2"],
+      ["Reeshon Feuer","Visiting Professor","Agronomy","USA","P2"],
+      ["Roger G. Young","Visiting Professor","Agricultural Chemistry","USA","P2"],
+      ["David R. Bouldin","Visiting Professor","Soil Science","USA","P2"],
+      ["Harold R. Cushman","Visiting Professor","Agricultural Education","USA","P2"],
+      ["Malcolm C. Bourne","Visiting Professor","Food Science & Technology","USA","P2, P3"],
+      ["Henry M. Munger","Visiting Professor","Vegetable Crops","USA","P2"],
+      ["Otto E. Schultz","Visiting Professor","Plant Pathology","USA","P2, P3"],
+      ["John N. Hathcock","Visiting Professor","Agricultural Chemistry","USA","P2, P3"],
+      ["Lawrence B. Darrah","Visiting Professor","Agricultural Economics","USA","P2, P3"],
+      ["David B. Hand","Consultant","Food Science & Technology","USA","P2"],
+      ["Robert A. Polson","Consultant","Rural Sociology","USA","P2"],
+      ["Loy V. Crowder","Consultant","Agronomy","USA","P2"],
+      ["Milton L. Scott","Consultant","Animal Nutrition","USA","P2"],
+      ["David Pimentel","Consultant","Entomology","USA","P2"],
+      ["Robert L. Plaisted","Consultant","Plant Breeding","USA","P2"],
+      ["H. David Thurston","Consultant","Plant Pathology","USA","P2"],
+      ["J.K. Loosli","Consultant","Animal Husbandry","USA","P2"],
+      ["William B. Ward","Consultant","Agricultural Communications","USA","P2"],
+      ["Charles E. Palm","Administrative Consultant","Administration","USA","P2"],
+      ["W. Keith Kennedy","Administrative Consultant","Administration","USA","P2"],
+      ["Charles A. Francis","Cornell Graduate Student","Plant Breeding","USA","P2"],
+      ["Pedro A. Sanchez","Cornell Graduate Student","Soil Science","USA","P2"],
+      ["Albert J. Nyberg","Cornell Graduate Student","Agricultural Economics","USA","P2"],
+      ["Isao Fujimoto","Cornell Graduate Student","Rural Sociology","USA","P2"],
+      ["Bruce Koppel","Cornell Graduate Student","Rural Sociology","USA","P2"],
+      ["H. Christian Wien","Cornell Graduate Student","Vegetable Crops","USA","P2"],
+      ["Gerald C. Wheelock","Cornell Graduate Student","Rural Sociology","USA","P2"],
+      ["Joseph R. Novak","Cornell Graduate Student","Agronomy","USA","P2"],
+      ["Hardy L. Shirley","SUNY Forestry Staff","Forestry","USA","P1"],
+      ["James E. Davis","SUNY Forestry Staff","Forestry","USA","P1"],
+      ["William L. Webb","SUNY Forestry Staff","Forestry","USA","P1"],
+      ["C.E. Farnsworth","SUNY Forestry Staff","Silviculture","USA","P1"],
+      ["Halsey B. Knapp","SUNY Forestry Staff","Forestry","USA","P1"],
+      ["Carl H. de Zeeuw","SUNY Forestry Staff","Wood Technology","USA","P1"],
+      ["Charles C. Larson","SUNY Forestry Staff","Forest Economics","USA","P1"],
+      ["Savel B. Silverborg","SUNY Forestry Staff","Forest Pathology","USA","P1"],
+      ["Salvador P. Lopez","Philippine Administrator","Administration","Philippines","P2"],
+      ["D.L. Umali","Philippine Administrator","Administration","Philippines","P2, P3"],
+      ["F.A. Bernardo","Philippine Administrator","Administration","Philippines","P2, P3"],
+      ["F.T. Orillo","Philippine Administrator","Administration","Philippines","P2"],
+      ["R.L. Villareal","Philippine Faculty","Vegetable Crops","Philippines","P2"],
+      ["G.T. Castillo","Philippine Faculty","Rural Sociology","Philippines","P2"],
+      ["Emil G. Javier","Philippine Graduate Student","Plant Breeding","Philippines","P2"],
+      ["Noel G. Mamicpic","Philippine Graduate Student","Agronomy","Philippines","P2"],
+      ["Mario M. Labadan","Philippine Graduate Student","Animal Nutrition","Philippines","P2"],
+      ["Jesus V. Melgar","Philippine Graduate Student","Dairy Science","Philippines","P2"],
+      ["Igmidio T. Corpuz","Philippine Graduate Student","Soil Science","Philippines","P2"],
+      ["Senen M. Miranda","Philippine Graduate Student","Agricultural Engineering","Philippines","P2"],
+      ["Vicente G. Momongan","Philippine Graduate Student","Animal Physiology","Philippines","P2"],
+      ["Leo C. Rimando","Philippine Graduate Student","Entomology","Philippines","P2"],
+      ["Pons Batugal","Philippine Graduate Student","Agronomy","Philippines","P2"],
+      ["S.C. Hsieh","Asian Visiting Professor","Agricultural Economics","Taiwan","P2, P3"],
+      ["C.W. Chang","Asian Visiting Professor","Agricultural Education","Taiwan","P2, P3"],
+      ["C. Chandrapauraya","Asian Participant","Food Science & Technology","Thailand","P2, P3"],
+      ["Rusli Hakim","Asian Graduate Student","Plant Breeding","Indonesia","P2, P3"],
+      ["Y.Y. Lu","Asian Graduate Student","Agricultural Economics","Taiwan","P2, P3"],
+      ["S.H. Liao","Asian Graduate Student","Agricultural Economics","Taiwan","P2, P3"],
+      ["M. Pajanaiphabulaya","Asian Graduate Student","Home Economics","Thailand","P2, P3"]
+    ];
+
+    const table = document.getElementById("personTable");
+    const search = document.getElementById("personSearch");
+    const count = document.getElementById("personCount");
+
+    function renderPeople(query = "") {
+      const normalized = query.trim().toLowerCase();
+      const filtered = normalized
+        ? people.filter((row) => row.join(" ").toLowerCase().includes(normalized))
+        : people;
+
+      table.innerHTML = filtered.map((row) => (
+        "<tr>" + row.map((cell) => `<td>${cell}</td>`).join("") + "</tr>"
+      )).join("");
+      count.textContent = `Showing ${filtered.length} of ${people.length} people.`;
+    }
+
+    search.addEventListener("input", (event) => renderPeople(event.target.value));
+    renderPeople();
+  </script>
+</body>
+</html>

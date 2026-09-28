@@ -407,6 +407,7 @@
       <a href="#site-search">Search</a>
       <a href="#summary">Summary</a>
       <a href="#programs">Programs</a>
+      <a href="#centrality">Centrality</a>
       <a href="#networks">Networks</a>
       <a href="#register">Register</a>
       <a href="#participants">Participants</a>
@@ -541,9 +542,29 @@
       </div>
     </section>
 
+    <section id="centrality">
+      <h2>Network Centrality Analysis</h2>
+      <p class="lead">Which people connect projects? Which affiliations reach the most participants? Explore centrality rankings alongside the existing project, discipline, and state networks.</p>
+      <div class="table-wrap">
+        <table>
+          <tr><th>Measure</th><th>What it reveals</th></tr>
+          <tr><td>Degree</td><td>Direct connections: a person’s affiliations or a group’s participating people.</td></tr>
+          <tr><td>Betweenness</td><td>Structural bridges that lie on shortest paths through the affiliation network.</td></tr>
+          <tr><td>Harmonic centrality</td><td>Reach through short paths, accounting for disconnected parts of the network.</td></tr>
+        </table>
+      </div>
+      <p>Each interactive panel below now includes separate rankings for people and affiliation groups, selectable measures, node inspection, and a CSV download of all scores. Search filters the display without changing the network used for analysis.</p>
+      <p class="note">These are measures of recorded affiliation structure, not proof of historical influence or direct collaboration. People in the discipline and state views each have one affiliation, so their betweenness is zero. Full formulas and interpretation notes are available inside the explorer.</p>
+      <div class="network-actions">
+        <a href="Cornell_Affiliation_Networks.html?net=project">Explore project centrality →</a>
+        <a href="Cornell_Affiliation_Networks.html?net=field">Discipline centrality →</a>
+        <a href="Cornell_Affiliation_Networks.html?net=country">State centrality →</a>
+      </div>
+    </section>
+
     <section id="networks">
       <h2>Affiliation Networks</h2>
-      <p>Three bipartite affiliation networks were constructed from the personnel register. Each links people to one type of hub: project, discipline, or state. The live panels below are interactive: search for names, click nodes to highlight connections, and zoom or pan each graph.</p>
+      <p>Three bipartite affiliation networks were constructed from the personnel register. Each links people to one type of hub: project, discipline, or state. Search for names, select centrality rankings to highlight connections, and zoom or pan each graph.</p>
 
       <h3>Live Interactive Networks</h3>
       <div class="network-panel">

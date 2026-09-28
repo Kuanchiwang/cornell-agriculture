@@ -67,13 +67,14 @@ pointer-events: none; display: none; z-index: 9999; max-width: 250px; }
   .legend { max-height: 220px; border-left: 0; border-top: 1px solid #252838; }
 }
 </style>
+<link rel="stylesheet" href="centrality.css">
 </head>
 <body>
-<h2 class="sr-only" style="position:absolute;left:-9999px">Cornell University International Agriculture Affiliation Networks — 82 persons mapped by project, discipline, and state</h2>
+<h2 class="sr-only">Cornell University International Agriculture Affiliation Networks and Centrality Analysis</h2>
 
 <header>
   <h1>Cornell University International Agriculture Records — Affiliation Networks</h1>
-  <p>Box 12, Vol. 24  |  c. 1957–1972  |  82 persons · 3 projects · 26 disciplines · 5 states</p>
+  <p id="network-description">Box 12, Vol. 24  |  c. 1957–1972  |  People, projects, disciplines, and states</p>
 </header>
 
 <div class="tabs">
@@ -84,18 +85,59 @@ pointer-events: none; display: none; z-index: 9999; max-width: 250px; }
 
 <div class="controls">
   <div class="search-box">
-    <input id="search" type="text" placeholder="Search name, role, discipline…">
+    <input id="search" type="search" aria-label="Find people in the graph" placeholder="Find people in the graph…">
   </div>
   <button class="reset-btn" id="resetBtn">Reset view</button>
-  <span class="ctrl-hint">Scroll = zoom  ·  Drag background = pan  ·  Click person = highlight connections</span>
+  <span class="ctrl-hint">Scroll to zoom · Drag to pan · Select a node or ranking to inspect its connections</span>
 </div>
 
 <div class="network-shell">
-  <div id="chart"></div>
-  <div class="legend" id="legend"></div>
+  <div id="chart" aria-label="Affiliation network graph"></div>
+  <aside class="analysis-sidebar" aria-label="Network analysis">
+    <section class="centrality-panel" aria-labelledby="centrality-title">
+      <p class="centrality-eyebrow" id="centrality-network-name">Project affiliations</p>
+      <h2 id="centrality-title">Centrality analysis</h2>
+      <p class="centrality-intro">Select a ranked node to inspect its connections.</p>
+      <div class="centrality-summary">
+        <div class="centrality-stat"><strong id="centrality-people">—</strong><span>people</span></div>
+        <div class="centrality-stat"><strong id="centrality-groups">—</strong><span>affiliation groups</span></div>
+        <div class="centrality-stat"><strong id="centrality-components">—</strong><span>components</span></div>
+      </div>
+      <div class="centrality-controls">
+        <label>Compare<select id="centrality-scope"><option value="person">People</option><option value="hub">Affiliation groups</option></select></label>
+        <label>Measure<select id="centrality-metric"><option value="betweenness">Betweenness</option><option value="degreeNormalized">Degree</option><option value="harmonic">Harmonic</option></select></label>
+      </div>
+      <p class="centrality-note" id="centrality-description"></p>
+      <label class="centrality-size"><input id="centrality-size" type="checkbox" checked>Size people by the selected measure</label>
+      <label class="centrality-filter">Filter rankings<input id="centrality-filter" type="search" placeholder="Name, role, or affiliation"></label>
+      <p class="centrality-note" id="centrality-count" aria-live="polite"></p>
+      <div class="centrality-table-wrap" tabindex="0" aria-label="Scrollable centrality rankings">
+        <table class="centrality-table"><caption class="sr-only">Centrality rankings; select a name to inspect its connections</caption><thead><tr><th scope="col" class="number">Rank</th><th scope="col">Node</th><th scope="col" class="number" id="centrality-score-heading">Betweenness</th></tr></thead><tbody id="centrality-rows"></tbody></table>
+      </div>
+      <div class="centrality-detail" id="centrality-detail" hidden aria-live="polite"></div>
+      <p class="centrality-note centrality-context" id="centrality-context"></p>
+      <button type="button" class="centrality-export" id="centrality-export">Download all scores · CSV</button>
+      <p class="centrality-note" id="centrality-graph-count"></p>
+      <details class="centrality-methods">
+        <summary>Methods and interpretation</summary>
+        <p>Each view is an undirected, unweighted, two-mode graph: a link joins a person to a recorded affiliation. No person-to-person relationships are inferred. Scores are calculated from the plotted records, not the descriptive summary tables.</p>
+        <ul>
+          <li><strong>Degree:</strong> distinct neighbors. Normalized by the opposite group size: number of affiliation groups for a person, or number of people for a group.</li>
+          <li><strong>Betweenness:</strong> sum of the fractions of shortest paths through a node, excluding endpoints, divided by (N−1)(N−2)/2. This is standard graph normalization, not bipartite-specific normalization.</li>
+          <li><strong>Harmonic:</strong> sum of 1/distance to each reachable other node, divided by N−1. Unreachable nodes contribute zero.</li>
+        </ul>
+        <p>N includes people and affiliation groups in the complete selected network. Percentages show normalized scores, not probabilities. Ties share a rank and are listed alphabetically. The CSV includes every node and unrounded scores on a 0–1 scale, regardless of filters.</p>
+        <p>Compare people with people, or groups with groups, within the same view. Centrality measures recorded structure; it does not establish historical influence, collaboration, or causation. Missing records and the chosen affiliation categories affect every score.</p>
+        <p>Method references: <a href="https://networkx.org/documentation/stable/reference/algorithms/generated/networkx.algorithms.bipartite.centrality.degree_centrality.html" target="_blank" rel="noopener">degree</a>, <a href="https://networkx.org/documentation/stable/reference/algorithms/generated/networkx.algorithms.centrality.betweenness_centrality.html" target="_blank" rel="noopener">betweenness</a>, <a href="https://networkx.org/documentation/stable/reference/algorithms/generated/networkx.algorithms.centrality.harmonic_centrality.html" target="_blank" rel="noopener">harmonic</a> (rescaled by N−1 here).</p>
+      </details>
+    </section>
+    <details class="legend-details"><summary>Color legend</summary><div class="legend" id="legend"></div></details>
+  </aside>
 </div>
 <div class="tooltip" id="tooltip"></div>
 
+<script src="centrality.js"></script>
+<script src="centrality-ui.js"></script>
 <script>
 // ─────────────────────────────────────────────────────────────────────────────
 // PEOPLE — 82 persons, each with one precise discipline
@@ -276,6 +318,8 @@ let svgSel;
 
 function buildAndDraw(type) {
   currentType = type;
+  document.getElementById("tooltip").style.display = "none";
+  document.getElementById("network-description").textContent = `Box 12, Vol. 24 | c. 1957–1972 | ${PEOPLE.length} plotted people · ${PROJECTS.length} projects · ${DISCIPLINES.length} disciplines · ${COUNTRIES.length} states`;
   document.getElementById("chart").innerHTML = "";
   if (simulation) simulation.stop();
 
@@ -348,12 +392,20 @@ function buildAndDraw(type) {
     .alpha(1).alphaDecay(0.018);
 
   // SVG scaffold
+  let userAdjustedView = false;
   const zoom = d3.zoom().scaleExtent([0.15, 5])
-    .on("zoom", e => g.attr("transform", e.transform));
+    .on("zoom", e => { g.attr("transform", e.transform); if (e.sourceEvent) userAdjustedView = true; });
 
   const svg = d3.select("#chart").append("svg").call(zoom);
   svgSel = svg;
   const g = svg.append("g");
+  function fitView() {
+    const box = g.node().getBBox();
+    if (!box.width || !box.height) return;
+    const scale = Math.min(1, (W - 36) / box.width, (H - 36) / box.height);
+    svg.call(zoom.transform, d3.zoomIdentity.translate(W / 2, H / 2).scale(scale).translate(-box.x - box.width / 2, -box.y - box.height / 2));
+  }
+  svgSel.resetView = fitView;
 
   // ── Links ──
   const linkSel = g.append("g")
@@ -365,7 +417,9 @@ function buildAndDraw(type) {
   // ── Hub nodes ──
   const hubSel = g.append("g")
     .selectAll("g").data(hubNodes).join("g")
-    .attr("class","node-hub");
+    .attr("class","node-hub")
+    .attr("tabindex", 0).attr("role", "button")
+    .attr("aria-label", d => `Inspect ${d.label.replace(/\n/g, " ")}`);
 
   hubSel.append("circle")
     .attr("r", d => d.r)
@@ -400,12 +454,16 @@ function buildAndDraw(type) {
   }).on("mousemove", e => {
     tip.style.left = (e.clientX+14)+"px";
     tip.style.top  = (e.clientY-10)+"px";
-  }).on("mouseout", () => tip.style.display = "none");
+  }).on("mouseout", () => tip.style.display = "none")
+    .on("click", (e, d) => { e.stopPropagation(); CornellCentralityPanel.select(d.id); })
+    .on("keydown", (e, d) => { if (e.key === "Enter" || e.key === " ") { e.preventDefault(); CornellCentralityPanel.select(d.id); } });
 
   // ── Person nodes ──
   const personSel = g.append("g")
     .selectAll("g").data(personNodes).join("g")
     .attr("class","node-person")
+    .attr("tabindex", 0).attr("role", "button")
+    .attr("aria-label", d => `Inspect ${d.name}`)
     .call(d3.drag()
       .on("start", (e,d) => { if(!e.active) simulation.alphaTarget(.3).restart(); d.fx=d.x; d.fy=d.y; })
       .on("drag",  (e,d) => { d.fx=e.x; d.fy=e.y; })
@@ -437,13 +495,13 @@ function buildAndDraw(type) {
     .on("mouseout", () => tip.style.display = "none")
     .on("click", (e, d) => {
       e.stopPropagation();
-      highlightPerson(d.id, personSel, linkSel);
-    });
+      CornellCentralityPanel.select(d.id);
+    })
+    .on("keydown", (e, d) => { if (e.key === "Enter" || e.key === " ") { e.preventDefault(); CornellCentralityPanel.select(d.id); } });
 
   // Click background to reset highlight
   svg.on("click", () => {
-    personSel.classed("dimmed",false).classed("lit",false);
-    linkSel.classed("dimmed",false).classed("lit",false);
+    CornellCentralityPanel.select(null);
   });
 
   // Tick
@@ -454,8 +512,32 @@ function buildAndDraw(type) {
     hubSel.attr("transform", d => `translate(${d.x},${d.y})`);
     personSel.attr("transform", d => `translate(${d.x},${d.y})`);
   });
+  simulation.on("end", () => { if (!userAdjustedView) fitView(); });
 
   buildLegend(type);
+  CornellCentralityPanel.update({
+    nodes: allNodes, links, type,
+    onSelect(id) {
+      document.getElementById("search").value = "";
+      const neighbors = new Set(id ? [id] : []);
+      links.forEach(l => {
+        if (l.source.id === id) neighbors.add(l.target.id);
+        if (l.target.id === id) neighbors.add(l.source.id);
+      });
+      personSel.classed("dimmed", d => !!id && !neighbors.has(d.id)).classed("lit", d => d.id === id);
+      hubSel.classed("dimmed", d => !!id && !neighbors.has(d.id)).classed("lit", d => d.id === id);
+      linkSel.classed("dimmed", l => !!id && l.source.id !== id && l.target.id !== id)
+        .classed("lit", l => l.source.id === id || l.target.id === id);
+    },
+    onMetric(metric, scalePeople, analysis) {
+      const max = Math.max(0, ...personNodes.map(d => analysis.byId.get(d.id)[metric]));
+      personNodes.forEach(d => { d.r = scalePeople && max ? 5 + 8 * Math.sqrt(analysis.byId.get(d.id)[metric] / max) : 6; });
+      personSel.select("circle").attr("r", d => d.r);
+      personSel.select("text").attr("x", d => d.r + 3);
+      simulation.force("collide").radius(d => (d.r || 6) + 4);
+      simulation.alpha(.2).restart();
+    }
+  });
 }
 
 // ─────────────────────────────────────────────────────────────────────────────
@@ -506,6 +588,8 @@ function buildLegend(type) {
 // ─────────────────────────────────────────────────────────────────────────────
 document.getElementById("search").addEventListener("input", function() {
   const q = this.value.trim().toLowerCase();
+  CornellCentralityPanel.select(null, false);
+  d3.selectAll(".node-hub").classed("dimmed", false).classed("lit", false);
   const personSel = d3.selectAll(".node-person");
   const linkSel   = d3.selectAll(".link");
   if (!q) {
@@ -538,9 +622,8 @@ document.querySelectorAll(".tab").forEach(btn => {
 
 document.getElementById("resetBtn").addEventListener("click", () => {
   document.getElementById("search").value = "";
-  d3.selectAll(".node-person").classed("dimmed",false).classed("lit",false);
-  d3.selectAll(".link").classed("dimmed",false).classed("lit",false);
-  if (svgSel) svgSel.call(d3.zoom().transform, d3.zoomIdentity);
+  CornellCentralityPanel.select(null);
+  if (svgSel) svgSel.resetView();
 });
 
 function initialNetworkType() {
